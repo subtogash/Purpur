@@ -31,3 +31,9 @@ jobs:
           ./gradlew clean cleanCache
           ./gradlew applyPatches --no-daemon --stacktrace 
           ./gradlew build --no-daemon --stacktrace
+
+      - name: Upload Paperclip Jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-${{ fromJSON(steps.determine.outputs.result).pr }}
+          path: build/libs/
